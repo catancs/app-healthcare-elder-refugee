@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState } from 'react';
-import type { ReactNode } from 'react';
 
 type Screen = 'symptomTriage' | 'gpGuidance' | 'journeyMap' | 'settings' | 'postVisitLogging';
 
@@ -11,7 +10,7 @@ interface NavigationContextType {
 
 const NavigationContext = createContext<NavigationContextType | undefined>(undefined);
 
-export const NavigationProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const NavigationProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [screenHistory, setScreenHistory] = useState<Screen[]>(['symptomTriage']);
 
   const navigateTo = (screen: Screen) => {
@@ -35,8 +34,6 @@ export const NavigationProvider: React.FC<{ children: ReactNode }> = ({ children
 
 export const useNavigation = () => {
   const context = useContext(NavigationContext);
-  if (!context) {
-    throw new Error('useNavigation must be used within NavigationProvider');
-  }
+  if (!context) throw new Error('useNavigation must be used within NavigationProvider');
   return context;
 }; 

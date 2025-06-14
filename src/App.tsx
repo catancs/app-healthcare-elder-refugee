@@ -74,7 +74,7 @@ const AppContent: React.FC = () => {
             top: '1rem', 
             left: '50%', 
             transform: 'translateX(-50%)',
-            zIndex: 10
+            zIndex: 100
           }}>
             <button
               style={{
@@ -88,7 +88,8 @@ const AppContent: React.FC = () => {
                 gap: '0.5rem',
                 cursor: 'pointer',
                 fontSize: '1rem',
-                fontWeight: '500'
+                fontWeight: '500',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
               }}
               onClick={() => navigateTo('settings')}
             >

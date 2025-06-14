@@ -16,7 +16,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: -100px; /* Offset for the help button space */
+  margin-top: 2rem; /* Changed from -100px to 2rem to prevent overlap */
+  padding-top: 3rem; /* Added padding to account for the top button */
 }
 
 .title {
