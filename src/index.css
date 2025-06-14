@@ -1,0 +1,106 @@
+:root {
+  /* Default theme */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --background: #ffffff;
+  --light-grey: #e0e0e0;
+  --white: #ffffff;
+  --btn-primary-bg: #1A237E;
+  --btn-primary-text: #ffffff;
+  --btn-help-bg: #EADDD7;
+  --btn-help-text: #333333;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+  --active-color: #1A237E;
+  --completed-color: #333333;
+  --upcoming-color: #e0e0e0;
+}
+
+/* High contrast mode */
+.high-contrast {
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --background: #ffffff;
+  --light-grey: #000000;
+  --white: #ffffff;
+  --btn-primary-bg: #000000;
+  --btn-primary-text: #ffffff;
+  --btn-help-bg: #000000;
+  --btn-help-text: #ffffff;
+  --border-color: #000000;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --active-color: #000000;
+  --completed-color: #000000;
+  --upcoming-color: #000000;
+}
+
+/* Text size classes */
+.text-default {
+  font-size: 1rem;
+}
+
+.text-large {
+  font-size: 1.25rem;
+}
+
+.text-huge {
+  font-size: 1.5rem;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background);
+  color: var(--text-primary);
+}
+
+#root {
+  max-width: 390px;
+  margin: 0 auto;
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+}
+
+/* High contrast specific styles */
+.high-contrast button {
+  border: 2px solid var(--text-primary);
+}
+
+.high-contrast .primaryButton {
+  background-color: var(--btn-primary-bg);
+  color: var(--btn-primary-text);
+  border: 2px solid var(--text-primary);
+}
+
+.high-contrast .backButton {
+  color: var(--text-primary);
+  border: 2px solid var(--text-primary);
+}
+
+.high-contrast .section {
+  border: 2px solid var(--text-primary);
+}
+
+.high-contrast .timeline {
+  border-left: 2px solid var(--text-primary);
+}
+
+.high-contrast .item {
+  border-left: 4px solid var(--text-primary);
+}
+
+.high-contrast .item.completed {
+  border-left-color: var(--completed-color);
+}
+
+.high-contrast .item.active {
+  border-left-color: var(--active-color);
+  background-color: var(--background);
+  border: 2px solid var(--text-primary);
+}

@@ -1,0 +1,67 @@
+.section {
+  background: var(--white);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 1rem 0;
+}
+
+.inputGroup {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+.input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 8px;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: var(--white);
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--btn-primary-bg);
+  box-shadow: 0 0 0 2px rgba(var(--btn-primary-bg-rgb), 0.1);
+}
+
+.saveButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--btn-primary-bg);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.saveButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.saveButton:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} 

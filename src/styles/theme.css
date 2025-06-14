@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+:root {
+  /* Main Theme: Warm Comfort */
+  --primary-bg: #F5E8C7;
+  --secondary-bg: #A3BFFA;
+  --accent-color: #2F4F4F;
+  
+  /* Text Colors */
+  --text-primary: #2F4F4F;
+  --text-secondary: #4A4A4A;
+  
+  /* UI Elements */
+  --btn-primary-bg: #2F4F4F;
+  --btn-primary-text: #F5E8C7;
+  --btn-secondary-bg: #A3BFFA;
+  --btn-secondary-text: #2F4F4F;
+  
+  /* Background Colors */
+  --white: #F5E8C7;
+  --light-grey: #A3BFFA;
+  
+  /* Help Button */
+  --btn-help-bg: #A3BFFA;
+  --btn-help-text: #2F4F4F;
+}
+
+html, body {
+  background: var(--primary-bg);
+  min-height: 100vh;
+  font-family: 'Inter', Arial, sans-serif;
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  --primary-bg: #1C2526;
+  --secondary-bg: #F5F6F5;
+  --accent-color: #00A896;
+  
+  /* Text Colors */
+  --text-primary: #F5F6F5;
+  --text-secondary: #F5F6F5;
+  
+  /* UI Elements */
+  --btn-primary-bg: #00A896;
+  --btn-primary-text: #F5F6F5;
+  --btn-secondary-bg: #F5F6F5;
+  --btn-secondary-text: #1C2526;
+  
+  /* Background Colors */
+  --white: #F5F6F5;
+  --light-grey: #1C2526;
+  
+  /* Help Button */
+  --btn-help-bg: #00A896;
+  --btn-help-text: #F5F6F5;
+}
+
+.high-contrast html, .high-contrast body {
+  background: var(--primary-bg);
+} 

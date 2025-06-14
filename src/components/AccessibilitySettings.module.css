@@ -1,0 +1,193 @@
+.settingsContainer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.settingsButton {
+  background-color: var(--white);
+  color: var(--text-primary);
+  border: 1px solid var(--text-primary);
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.settingsButton:hover {
+  transform: scale(1.05);
+}
+
+.settings {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  min-width: 300px;
+}
+
+.settingsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--light-grey);
+}
+
+.settingsHeader h2 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.closeButton:hover {
+  background-color: var(--light-grey);
+}
+
+.settingsSection {
+  margin-bottom: 1.5rem;
+}
+
+.settingsSection h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+  color: var(--text-primary);
+}
+
+.setting {
+  margin: 1rem 0;
+}
+
+.settingLabel {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+/* Custom Checkbox Styles */
+.settingLabel input[type="checkbox"] {
+  appearance: none;
+  width: 24px;
+  height: 24px;
+  border: 2px solid var(--accent-color);
+  border-radius: 6px;
+  background: var(--white);
+  position: relative;
+  cursor: pointer;
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+  margin-right: 0.5rem;
+}
+
+.settingLabel input[type="checkbox"]:checked {
+  background: var(--btn-primary-bg);
+  border-color: var(--btn-primary-bg);
+}
+
+.settingLabel input[type="checkbox"]:checked::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 2px;
+  width: 7px;
+  height: 14px;
+  border: solid var(--btn-primary-text);
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid var(--light-grey);
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: var(--white);
+  color: var(--text-primary);
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.languageButton {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: var(--white);
+  border: 1px solid var(--light-grey);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.languageButton:hover {
+  background-color: var(--light-grey);
+}
+
+/* High contrast mode styles */
+:global(.high-contrast) {
+  --text-primary: #000000;
+  --text-secondary: #000000;
+  --background: #ffffff;
+  --light-grey: #000000;
+  --btn-primary-bg: #000000;
+  --btn-primary-text: #ffffff;
+  --accent-color: #000000;
+  --btn-help-bg: #000000;
+  --primary-bg: #ffffff;
+  --secondary-bg: #ffffff;
+  --white: #ffffff;
+}
+
+:global(.high-contrast) button {
+  border: 2px solid #000000 !important;
+}
+
+:global(.high-contrast) .settingsButton {
+  border: 2px solid #000000;
+}
+
+:global(.high-contrast) .closeButton {
+  border: 2px solid #000000;
+}
+
+:global(.high-contrast) .languageButton {
+  border: 2px solid #000000;
+}
+
+:global(.high-contrast) .select {
+  border: 2px solid #000000;
+}
+
+/* Text size styles */
+:global(.text-large) {
+  font-size: 1.2rem;
+}
+
+:global(.text-larger) {
+  font-size: 1.4rem;
+} 

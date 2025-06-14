@@ -1,0 +1,21 @@
+.item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px;
+  border-left: 4px solid var(--light-grey);
+  opacity: 0.5; /* Upcoming steps are faded */
+}
+
+.item.completed {
+  border-left-color: var(--text-primary);
+  opacity: 0.5; /* Completed steps are also faded */
+}
+
+.item.active {
+  border-left-color: var(--text-primary);
+  background-color: var(--white);
+  border-radius: 8px;
+  opacity: 1; /* The active step is fully visible and highlighted */
+  font-weight: 600;
+} 
