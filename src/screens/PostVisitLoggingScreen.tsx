@@ -1,16 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Pill, Hospital, ArrowLeft } from 'lucide-react';
-import { useNavigation } from '../contexts/NavigationContext';
 import SymptomButton from '../components/SymptomButton';
 import ReadAloudButton from '../components/ReadAloudButton';
 import sharedStyles from '../styles/shared.module.css';
 
 const PostVisitLoggingScreen: React.FC = () => {
-  const { goBack } = useNavigation();
+  const navigate = useNavigate();
 
   return (
     <div className={sharedStyles.screen}>
-      <button className={sharedStyles.backButton} onClick={goBack}>
+      <button className={sharedStyles.backButton} onClick={() => navigate(-1)}>
         <ArrowLeft />
       </button>
       <ReadAloudButton />
@@ -22,6 +22,7 @@ const PostVisitLoggingScreen: React.FC = () => {
             text="I got a prescription"
             onClick={() => {
               window.alert("Journey Updated! The 'Pick up Prescription' step is now active.");
+              navigate('/journey/5');
             }}
             style={{ fontSize: '1.2rem' }}
           />
@@ -30,6 +31,7 @@ const PostVisitLoggingScreen: React.FC = () => {
             text="I was referred to the hospital"
             onClick={() => {
               window.alert("Journey Updated! The 'Visit the Hospital' step is now active.");
+              navigate('/journey/4');
             }}
             style={{ fontSize: '1.2rem' }}
           />

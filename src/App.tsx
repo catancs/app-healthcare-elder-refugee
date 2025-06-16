@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Stethoscope, Phone, Calendar, Hospital, Pill, UserCircle } from 'lucide-react';
-import { NavigationProvider, useNavigation } from './contexts/NavigationContext';
+import React from 'react';
+import { Routes, Route, Outlet, useParams, useNavigate } from 'react-router-dom';
+import { Stethoscope, Phone, Calendar, Hospital, Pill, ArrowLeft } from 'lucide-react';
 import { AccessibilityProvider, useAccessibility } from './contexts/AccessibilityContext';
 import SymptomTriageScreen from './screens/SymptomTriageScreen';
 import GPGuidanceScreen from './screens/GPGuidanceScreen';
@@ -13,6 +13,7 @@ import PickupPrescriptionScreen from './screens/PickupPrescriptionScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import PostVisitLoggingScreen from './screens/PostVisitLoggingScreen';
 import AccessibilitySettings from './components/AccessibilitySettings';
+import JourneyNavigation from './components/JourneyNavigation';
 import './styles/theme.css';
 
 const journeySteps = [
@@ -38,113 +39,75 @@ const stepDescriptions: { [key: number]: string } = {
   5: 'This is where you can see details about picking up your prescription. Visit your local pharmacy with your prescription.'
 };
 
-const AppContent: React.FC = () => {
-  const { currentScreen, navigateTo, goBack } = useNavigation();
+const Layout: React.FC = () => {
   const { highContrast, textSize } = useAccessibility();
-  const [activeStepId, setActiveStepId] = useState(1);
-  const [viewingStepId, setViewingStepId] = useState<number | null>(null);
-
-  const handleSymptomSelect = () => {
-    setActiveStepId(2);
-    navigateTo('gpGuidance');
-  };
-
-  const handleViewJourney = () => {
-    navigateTo('journeyMap');
-  };
-
-  const handleGoBackToSymptomTriage = () => {
-    navigateTo('symptomTriage');
-  };
-
-  const handleStepSelect = (id: number) => {
-    setViewingStepId(id);
-  };
-
-  const handleBackToJourneyMap = () => {
-    setViewingStepId(null);
-  };
-
+  
   return (
     <div className={`${highContrast ? 'high-contrast' : ''} ${textSize !== 'default' ? `text-${textSize}` : ''}`}>
-      {currentScreen === 'symptomTriage' && (
-        <div style={{ position: 'relative' }}>
-          <div style={{ 
-            position: 'absolute', 
-            top: '1rem', 
-            left: '50%', 
-            transform: 'translateX(-50%)',
-            zIndex: 100
-          }}>
-            <button
-              style={{
-                backgroundColor: 'var(--white)',
-                color: 'var(--text-primary)',
-                border: '1px solid var(--text-primary)',
-                borderRadius: '8px',
-                padding: '0.5rem 1rem',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.5rem',
-                cursor: 'pointer',
-                fontSize: '1rem',
-                fontWeight: '500',
-                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-              }}
-              onClick={() => navigateTo('settings')}
-            >
-              <UserCircle size={20} />
-              <span>My Information</span>
-            </button>
-          </div>
-          <SymptomTriageScreen onSymptomSelect={handleSymptomSelect} />
-        </div>
-      )}
-      {currentScreen === 'gpGuidance' && (
-        <GPGuidanceScreen onBack={goBack} onViewJourney={handleViewJourney} />
-      )}
-      {currentScreen === 'journeyMap' && (
-        viewingStepId === null ? (
-          <JourneyMapScreen
-            journeySteps={journeySteps}
-            activeStepId={activeStepId}
-            onStepSelect={handleStepSelect}
-          />
-        ) : viewingStepId === 1 ? (
-          <SymptomLoggedScreen onBack={handleBackToJourneyMap} />
-        ) : viewingStepId === 3 ? (
-          <GPAppointmentScreen onBack={handleBackToJourneyMap} />
-        ) : viewingStepId === 4 ? (
-          <VisitHospitalScreen onBack={handleBackToJourneyMap} />
-        ) : viewingStepId === 5 ? (
-          <PickupPrescriptionScreen onBack={handleBackToJourneyMap} />
-        ) : (
-          <JourneyStepDetailScreen
-            icon={iconMap[journeySteps.find(s => s.id === viewingStepId)?.iconName || 'Stethoscope']}
-            title={journeySteps.find(s => s.id === viewingStepId)?.title || ''}
-            description={stepDescriptions[viewingStepId] || 'Details about this step will appear here.'}
-            onBack={handleBackToJourneyMap}
-          />
-        )
-      )}
-      {currentScreen === 'settings' && (
-        <SettingsScreen onBack={handleGoBackToSymptomTriage} />
-      )}
-      {currentScreen === 'postVisitLogging' && (
-        <PostVisitLoggingScreen />
-      )}
+      <Outlet />
       <AccessibilitySettings />
     </div>
   );
 };
 
+const JourneyStepPage: React.FC = () => {
+  const { stepId } = useParams();
+  const navigate = useNavigate();
+  const stepIdNum = parseInt(stepId || '0', 10);
+  const step = journeySteps.find(s => s.id === stepIdNum);
+  
+  const renderStepContent = () => {
+    switch (stepIdNum) {
+      case 1:
+        return <SymptomLoggedScreen />;
+      case 3:
+        return <GPAppointmentScreen />;
+      case 4:
+        return <VisitHospitalScreen />;
+      case 5:
+        return <PickupPrescriptionScreen />;
+      default:
+        return (
+          <JourneyStepDetailScreen
+            icon={iconMap[step?.iconName || 'Stethoscope']}
+            title={step?.title || ''}
+            description={stepDescriptions[stepIdNum] || 'Details about this step will appear here.'}
+          />
+        );
+    }
+  };
+
+  return (
+    <div className="screen">
+      <button className="backButton" onClick={() => navigate('/journey-map')} aria-label="Back to journey map" style={{ position: 'absolute', top: 24, left: 24, zIndex: 101 }}>
+        <ArrowLeft size={28} />
+      </button>
+      {renderStepContent()}
+      <JourneyNavigation currentStepId={stepIdNum} totalSteps={journeySteps.length} />
+    </div>
+  );
+};
+
+const AppRoutes: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<SymptomTriageScreen />} />
+        <Route path="gp-guidance" element={<GPGuidanceScreen />} />
+        <Route path="journey-map" element={<JourneyMapScreen journeySteps={journeySteps} activeStepId={1} />} />
+        <Route path="journey/:stepId" element={<JourneyStepPage />} />
+        <Route path="settings" element={<SettingsScreen />} />
+        <Route path="post-visit-logging" element={<PostVisitLoggingScreen />} />
+      </Route>
+    </Routes>
+  );
+};
+
 const App: React.FC = () => {
   return (
-    <NavigationProvider>
-      <AccessibilityProvider>
-        <AppContent />
-      </AccessibilityProvider>
-    </NavigationProvider>
+    <AccessibilityProvider>
+      <AppRoutes />
+    </AccessibilityProvider>
   );
 };
 

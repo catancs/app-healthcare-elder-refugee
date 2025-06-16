@@ -1,17 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
 import ReadAloudButton from '../components/ReadAloudButton';
 import sharedStyles from '../styles/shared.module.css';
 import styles from './SettingsScreen.module.css';
 
-interface SettingsScreenProps {
-  onBack: () => void;
-}
+const SettingsScreen: React.FC = () => {
+  const navigate = useNavigate();
 
-const SettingsScreen: React.FC<SettingsScreenProps> = ({ onBack }) => {
   return (
     <div className={sharedStyles.screen}>
-      <button className={sharedStyles.backButton} onClick={onBack}>
+      <button className={sharedStyles.backButton} onClick={() => navigate('/')}>
         <ArrowLeft />
       </button>
       <ReadAloudButton />

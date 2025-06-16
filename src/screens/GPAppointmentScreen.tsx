@@ -1,29 +1,20 @@
 import React from 'react';
-import { Calendar, ArrowLeft } from 'lucide-react';
+import { Calendar } from 'lucide-react';
 import ReadAloudButton from '../components/ReadAloudButton';
 import sharedStyles from '../styles/shared.module.css';
 import styles from './GPAppointmentScreen.module.css';
 
-interface GPAppointmentScreenProps {
-  onBack: () => void;
-}
-
-const GPAppointmentScreen: React.FC<GPAppointmentScreenProps> = ({ onBack }) => {
+const GPAppointmentScreen: React.FC = () => {
   const handleAddToCalendar = () => {
     window.alert("This would open the phone's calendar.");
   };
 
   return (
-    <div className={sharedStyles.screen}>
-      <button className={sharedStyles.backButton} onClick={onBack}>
-        <ArrowLeft />
-      </button>
+    <>
       <ReadAloudButton />
-      
       <div className={sharedStyles.content}>
         <Calendar size={64} className={styles.calendarIcon} />
         <h1 className={sharedStyles.title}>Your GP Appointment</h1>
-        
         <div className={styles.appointmentDetails}>
           <div className={styles.detailRow}>
             <span className={styles.label}>Date:</span>
@@ -42,7 +33,6 @@ const GPAppointmentScreen: React.FC<GPAppointmentScreenProps> = ({ onBack }) => 
             <span className={styles.value}>Confirmed (Farsi)</span>
           </div>
         </div>
-
         <button 
           className={sharedStyles.primaryButton}
           onClick={handleAddToCalendar}
@@ -50,7 +40,7 @@ const GPAppointmentScreen: React.FC<GPAppointmentScreenProps> = ({ onBack }) => 
           Add to my Calendar
         </button>
       </div>
-    </div>
+    </>
   );
 };
 

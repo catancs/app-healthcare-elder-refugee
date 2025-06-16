@@ -1,22 +1,17 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Map, CalendarCheck } from 'lucide-react';
-import { useNavigation } from '../contexts/NavigationContext';
 import HelpButton from '../components/HelpButton';
 import ReadAloudButton from '../components/ReadAloudButton';
 import sharedStyles from '../styles/shared.module.css';
 
-interface GPGuidanceScreenProps {
-  onBack: () => void;
-  onViewJourney: () => void;
-}
-
-const GPGuidanceScreen: React.FC<GPGuidanceScreenProps> = ({ onBack, onViewJourney }) => {
-  const { navigateTo } = useNavigation();
+const GPGuidanceScreen: React.FC = () => {
+  const navigate = useNavigate();
   const [showChat, setShowChat] = useState(false);
 
   return (
     <div className={sharedStyles.screen}>
-      <button className={sharedStyles.backButton} onClick={onBack}>
+      <button className={sharedStyles.backButton} onClick={() => navigate(-1)}>
         <ArrowLeft />
       </button>
       <h1 className={sharedStyles.title}>GP Guidance</h1>
@@ -36,14 +31,14 @@ const GPGuidanceScreen: React.FC<GPGuidanceScreenProps> = ({ onBack, onViewJourn
           </>
         )}
       </div>
-      <button className={sharedStyles.journeyButton} onClick={onViewJourney}>
+      <button className={sharedStyles.journeyButton} onClick={() => navigate('/journey-map')}>
         <Map size={32} />
         <span>My Journey</span>
       </button>
       <button 
         className={sharedStyles.primaryButton} 
         style={{ marginTop: '1rem' }}
-        onClick={() => navigateTo('postVisitLogging')}
+        onClick={() => navigate('/post-visit-logging')}
       >
         <CalendarCheck size={24} />
         <span>I have made an appointment</span>
