@@ -46,3 +46,53 @@
   font-size: 1.1rem;
   font-weight: 500;
 } 
+/* New update log button */
+.updateLogButton {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background: var(--white);
+  border: 1px solid var(--text-primary);
+  color: var(--text-primary);
+  padding: 0.5rem 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  border-radius: 8px;
+  transition: transform 0.2s;
+  z-index: 10;
+}
+
+.updateLogButton:hover {
+  transform: scale(1.05);
+}
+
+/* Modal overlay */
+.infoOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 200;
+}
+
+/* Modal content */
+.infoModal {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  text-align: left;
+}
+
+.infoModal p {
+  margin: 0 0 1rem;
+  line-height: 1.4;
+}
