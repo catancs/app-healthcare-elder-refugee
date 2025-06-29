@@ -1,0 +1,46 @@
+.helpRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+  
+  .infoButton {
+    background: transparent;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: var(--primary);
+    transition: transform 0.1s ease;
+  }
+  .infoButton:active {
+    transform: scale(0.9);
+  }
+  
+  .infoOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 200;
+  }
+  
+  .infoModal {
+    background: var(--white);
+    padding: 1.5rem;
+    border-radius: 8px;
+    max-width: 300px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    text-align: center;
+  }
+  .infoModal p {
+    margin: 0 0 1rem;
+    line-height: 1.4;
+  }
+  
