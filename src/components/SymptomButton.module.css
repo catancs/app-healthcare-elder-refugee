@@ -11,15 +11,22 @@
   gap: 1rem;
   cursor: pointer;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s;
+  transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.symptomButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
 }
 
 .symptomButton:active {
   transform: scale(0.95);
+  filter: brightness(85%);
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .symptomButton span {
   font-size: 1.2rem;
   text-align: center;
   padding: 0 0.5rem;
-} 
+}

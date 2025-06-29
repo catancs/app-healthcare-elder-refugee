@@ -37,7 +37,7 @@ const SymptomTriageScreen: React.FC = () => {
         </button>
       </div>
       <div className={sharedStyles.centeredContent}>
-        <h1 className={sharedStyles.title}>What are your symptoms?</h1>
+        <h1 className={sharedStyles.title}>How are you feeling?</h1>
         <div className={sharedStyles.singleColumnGrid}>
           <SymptomButton icon={<BrainCircuit size={48} />} onClick={handleSymptomSelect} />
           <SymptomButton icon={<Thermometer size={48} />} onClick={handleSymptomSelect} />
@@ -47,8 +47,8 @@ const SymptomTriageScreen: React.FC = () => {
           className={styles.voiceInput}
           onClick={() => window.alert('Voice recognition would be activated here to listen for symptoms.')}
         >
-          <Mic size={48} />
-          <span>Or speak your symptom</span>
+          <Mic size={64} />
+          <span>Tell me what's wrong</span>
         </div>
       </div>
       <HelpButton />
