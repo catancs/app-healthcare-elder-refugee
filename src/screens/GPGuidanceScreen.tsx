@@ -46,7 +46,7 @@ const GPGuidanceScreen: React.FC = () => {
       </div>
       <button className={sharedStyles.journeyButton} onClick={() => navigate('/journey-map')}>
         <Map size={32} />
-        <span>My Journey</span>
+        <span>See all the steps</span>
       </button>
       <button 
         className={sharedStyles.primaryButton} 
